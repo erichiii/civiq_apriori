@@ -10,6 +10,11 @@ const nextConfig = {
       },
     ],
   },
+  experimental: {
+    outputFileTracingIncludes: {
+      '/api/results': ['./data/**'],
+    },
+  },
 }
 
 module.exports = nextConfig
