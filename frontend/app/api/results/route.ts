@@ -2,13 +2,15 @@ import { NextRequest, NextResponse } from 'next/server'
 import fs from 'fs'
 import path from 'path'
 
+type CsvRecord = Record<string, string | number>
+
 function parseCSV(csvContent: string) {
   const lines = csvContent.trim().split('\n')
   const headers = lines[0].split(',')
   
   const records = lines.slice(1).map(line => {
     const values = line.split(',')
-    const record: Record<string, any> = {}
+    const record: CsvRecord = {}
     headers.forEach((header, index) => {
       const value = values[index]
       record[header] = isNaN(Number(value)) ? value : Number(value)
@@ -47,9 +49,9 @@ export async function GET(request: NextRequest) {
       metrics,
       rawData: {
         csvRows: records.length,
-        timestamps: records.map((r: { step: number }) => r.step),
-        activeVehicles: records.map((r: { active_vehicles: number }) => r.active_vehicles),
-        systemWait: records.map((r: { total_system_wait: number }) => r.total_system_wait),
+        timestamps: records.map((r) => Number(r.step ?? 0)),
+        activeVehicles: records.map((r) => Number(r.active_vehicles ?? 0)),
+        systemWait: records.map((r) => Number(r.total_system_wait ?? 0)),
       },
     })
   } catch (error) {
