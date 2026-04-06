@@ -1,0 +1,20 @@
+{
+  "baseline_csv": {
+    "statistics": {
+      "avg_system_wait": 2486.14,
+      "peak_active_vehicles": 389,
+      "avg_active_vehicles": 112.23,
+      "total_rows": 360
+    }
+  },
+  "sumo_stats": {
+    "baseline_high": {
+      "trip_duration": 1341,
+      "waiting_time": 4.72,
+      "veh_count": 389,
+      "avg_speed": 8.5,
+      "real_time_factor": 2.14,
+      "route_length": 3200
+    }
+  }
+}

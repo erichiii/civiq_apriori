@@ -29,6 +29,10 @@ baseline_results.csv
 **/data/*.xml
 **/data/*.csv
 
+# Exception: frontend bundled data files for Vercel deployment
+!frontend/data/baseline_results.csv
+!frontend/data/linked_results_report.json
+
 # IDE
 .vscode/
 .idea/

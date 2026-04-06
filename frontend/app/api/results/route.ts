@@ -24,19 +24,16 @@ export async function GET(request: NextRequest) {
     const algorithm = request.nextUrl.searchParams.get('algorithm')
     const trafficLevel = request.nextUrl.searchParams.get('trafficLevel') || 'high'
 
-    // Path to the project root - go up 2 levels from frontend/app/api
-    const projectRoot = path.join(process.cwd(), '..', '..')
-    
-    console.log('Project root:', projectRoot)
-    console.log('Current working directory:', process.cwd())
+    // Data files are bundled in the frontend/data directory
+    const dataDir = path.join(process.cwd(), 'data')
 
     // Read baseline_results.csv
-    const csvPath = path.join(projectRoot, 'baseline_results.csv')
+    const csvPath = path.join(dataDir, 'baseline_results.csv')
     const csvContent = fs.readFileSync(csvPath, 'utf-8')
     const records = parseCSV(csvContent)
 
     // Read linked results report
-    const reportPath = path.join(projectRoot, 'linked_results_report.json')
+    const reportPath = path.join(dataDir, 'linked_results_report.json')
     const reportContent = fs.readFileSync(reportPath, 'utf-8')
     const report = JSON.parse(reportContent)
 
